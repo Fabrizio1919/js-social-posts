@@ -58,12 +58,12 @@ const posts = [
 console.log(posts);
 
 
-// contenitore dei post
+ // contenitore dei post
 const containerElement = document.getElementById('container');
 posts.forEach((post) => {
     let immagineProfilo;
     let imgProv;
-    if(post.author.image === null){
+    if (post.author.image === null) {
         immagineProfilo = imgProv
     } else {
         immagineProfilo = post.author.image
@@ -71,8 +71,8 @@ posts.forEach((post) => {
     containerElement.insertAdjacentHTML('beforeend', generetePost(immagineProfilo))
 });
 
-function generetePost(icon) {  
-        const markup = `<div class="post">
+function generetePost(icon) {
+    const markup = `<div class="post">
     <div class="post__header">
     <div class="post-meta">                    
         <div class="post-meta__icon">
@@ -102,15 +102,30 @@ Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
 </div> 
 </div>            
 </div>`
-return markup
-}   
+    return markup
+} 
 
-/* function genereteImgProv(nomeUtente) {
-    const post.author = 'Luca-Formicola'
-    const nome = nomeUtente.split('')
-    console.log(nome);
+function genereteImgProv(nomeUtente) {
+    // nomeUtente = "Luca Formicola"
+    // generare un array tramite metodo slpit
+    const nome = nomeUtente.split(' ')
+    // creare variabile nome e variabile cognome 
+    let userName = nome[0]
+    // userName='Luca'
+    let lastName = nome[1]
+    // prendere la prima lettera della scriga sia di username che llast name e salvarla in un variabile ciascuno
+    console.log(userName);
+    console.log(lastName);
+
+    const fistChartName = userName.charAt(0);
+    console.log(fistChartName);
+    const lastChartName = lastName.charAt(0);
+    console.log(lastChartName);
+    
+
+
 }
- */
+
 
 
 
