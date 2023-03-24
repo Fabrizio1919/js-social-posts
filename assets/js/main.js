@@ -60,44 +60,52 @@ console.log(posts);
 
  // contenitore dei post
 const containerElement = document.getElementById('container');
+
 posts.forEach((post) => {
     let immagineProfilo;
-    let imgProv;
+  /*   let imgProv; */
     if (post.author.image === null) {
-        immagineProfilo = imgProv
+       /*  immagineProfilo = imgProv */
+        immagineProfilo = genereteImgProv(post.author.name)
     } else {
         immagineProfilo = post.author.image
     }
-    containerElement.insertAdjacentHTML('beforeend', generetePost(immagineProfilo))
+    let user_Name = post.author.name
+    let likes = post.likes
+    let data= post.created
+    let descrizione= post.content
+    let media= post.media
+    let id = post.id
+    containerElement.insertAdjacentHTML('beforeend', generetePost(immagineProfilo, user_Name, likes, data, descrizione, media, id))
 });
 
-function generetePost(icon) {
+function generetePost(icon, name, likes, data, descrizione, media, id) {
     const markup = `<div class="post">
     <div class="post__header">
     <div class="post-meta">                    
         <div class="post-meta__icon">
-            <img class="profile-pic" src="${icon}" alt="Phil Mangione">                    
+            <img class="profile-pic" src="${icon}" alt="${icon}">                    
             </div>
         <div class="post-meta__data">
-        <div class="post-meta__author"></div>
-        <div class="post-meta__time">25/6/2021</div>
+        <div class="post-meta__author">${name}</div>
+        <div class="post-meta__time">${data}</div>
         </div>                    
     </div>
 </div>
-<div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
+<div class="post__text">${descrizione}</div>
 <div class="post__image">
-<img src="https://unsplash.it/600/300?image=171" alt="">
+<img src="${media}" alt="">
 </div>
 <div class="post__footer">
 <div class="likes js-likes">
 <div class="likes__cta">
-<a class="like-button  js-like-button" href="#" data-postid="1">
+<a class="like-button  js-like-button" href="#" data-postid="${id}">
 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
 <span class="like-button__label">Mi Piace</span>
 </a>
 </div>
 <div class="likes__counter">
-Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+Piace a <b id="${id}" class="js-likes-counter">${likes}</b> persone
 </div>
 </div> 
 </div>            
@@ -108,21 +116,22 @@ Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
 function genereteImgProv(nomeUtente) {
     // nomeUtente = "Luca Formicola"
     // generare un array tramite metodo slpit
-    const nome = nomeUtente.split(' ')
+    const nome = nomeUtente.split(' ');
     // creare variabile nome e variabile cognome 
     let userName = nome[0]
     // userName='Luca'
     let lastName = nome[1]
     // prendere la prima lettera della scriga sia di username che llast name e salvarla in un variabile ciascuno
-    console.log(userName);
-    console.log(lastName);
-
+   /*  console.log(userName);
+    console.log(lastName); */
     const fistChartName = userName.charAt(0);
     console.log(fistChartName);
     const lastChartName = lastName.charAt(0);
     console.log(lastChartName);
-    
 
+    let fistCaracter = `${fistChartName} ${lastChartName}`
+    console.log(fistCaracter);
+    return fistCaracter
 
 }
 
