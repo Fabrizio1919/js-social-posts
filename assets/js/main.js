@@ -57,32 +57,84 @@ const posts = [
 ];
 console.log(posts);
 
+
 // contenitore dei post
 const containerElement = document.getElementById('container');
+posts.forEach((post) => {
+    let immagineProfilo;
+    let imgProv;
+    if(post.author.image === null){
+        immagineProfilo = imgProv
+    } else {
+        immagineProfilo = post.author.image
+    }
+    containerElement.insertAdjacentHTML('beforeend', generetePost(immagineProfilo))
+});
 
-function generetePost(elementHTML, postElement) {
+function generetePost(icon) {  
+        const markup = `<div class="post">
+    <div class="post__header">
+    <div class="post-meta">                    
+        <div class="post-meta__icon">
+            <img class="profile-pic" src="${icon}" alt="Phil Mangione">                    
+            </div>
+        <div class="post-meta__data">
+        <div class="post-meta__author"></div>
+        <div class="post-meta__time">25/6/2021</div>
+        </div>                    
+    </div>
+</div>
+<div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
+<div class="post__image">
+<img src="https://unsplash.it/600/300?image=171" alt="">
+</div>
+<div class="post__footer">
+<div class="likes js-likes">
+<div class="likes__cta">
+<a class="like-button  js-like-button" href="#" data-postid="1">
+<i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+<span class="like-button__label">Mi Piace</span>
+</a>
+</div>
+<div class="likes__counter">
+Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+</div>
+</div> 
+</div>            
+</div>`
+return markup
+}   
 
-    //destrutturazione elemento post
-    const { author, created, content, media, likes, id } = postElement;
-    //destrutturazione proprietà author
-    const { name: nameAuthor } = author;
-
-    //author name
-    elementHTML.querySelector('.post-meta__author').innerHTML = nameAuthor;
-    //date
-    console.log('created', created)
-    const createdAt = newDate.toLocaleDateString()(created);
-    elementHTML.querySelector('.post-meta__time').innerHTML = createdAt;
-    //description
-    elementHTML.querySelector('.post__text').innerHTML = content;
-    //image
-    elementHTML.querySelector('.post__image > img').src = media;
-    //likes
-    const elementLikeCounter = elementHTML.querySelector('.js-likes-counter');
-    elementLikeCounter.id = `like-counter-1${id}`;
-    elementLikeCounter.innerHTML = likes;
+/* function genereteImgProv(nomeUtente) {
+    const post.author = 'Luca-Formicola'
+    const nome = nomeUtente.split('')
+    console.log(nome);
 }
+ */
 
 
 
 
+
+
+
+
+
+
+//destrutturazione elemento post
+//destrutturazione proprietà author
+/* const { name: nameAuthor } = author; */
+/*    //author name
+   elementHTML.querySelector('.post-meta__author').innerHTML = nameAuthor;
+   //date
+   console.log('created', created)
+   const createdAt = newDate.toLocaleDateString()(created);
+   elementHTML.querySelector('.post-meta__time').innerHTML = createdAt;
+   //description
+   elementHTML.querySelector('.post__text').innerHTML = content;
+   //image
+   elementHTML.querySelector('.post__image > img').src = media;
+   //likes
+   const elementLikeCounter = elementHTML.querySelector('.js-likes-counter');
+   elementLikeCounter.id = `like-counter-1${id}`;
+   elementLikeCounter.innerHTML = likes; */
