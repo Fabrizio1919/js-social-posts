@@ -55,4 +55,34 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+console.log(posts);
+
+// contenitore dei post
+const containerElement = document.getElementById('container');
+
+function generetePost(elementHTML, postElement) {
+
+    //destrutturazione elemento post
+    const { author, created, content, media, likes, id } = postElement;
+    //destrutturazione proprietà author
+    const { name: nameAuthor } = author;
+
+    //author name
+    elementHTML.querySelector('.post-meta__author').innerHTML = nameAuthor;
+    //date
+    console.log('created', created)
+    const createdAt = newDate.toLocaleDateString()(created);
+    elementHTML.querySelector('.post-meta__time').innerHTML = createdAt;
+    //description
+    elementHTML.querySelector('.post__text').innerHTML = content;
+    //image
+    elementHTML.querySelector('.post__image > img').src = media;
+    //likes
+    const elementLikeCounter = elementHTML.querySelector('.js-likes-counter');
+    elementLikeCounter.id = `like-counter-1${id}`;
+    elementLikeCounter.innerHTML = likes;
+}
+
+
+
 
