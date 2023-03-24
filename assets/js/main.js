@@ -58,24 +58,25 @@ const posts = [
 console.log(posts);
 
 
- // contenitore dei post
+// contenitore dei post
 const containerElement = document.getElementById('container');
 
 posts.forEach((post) => {
     let immagineProfilo;
-  /*   let imgProv; */
+    /*   let imgProv; */
     if (post.author.image === null) {
-       /*  immagineProfilo = imgProv */
+        /*  immagineProfilo = imgProv */
         immagineProfilo = genereteImgProv(post.author.name)
     } else {
-        immagineProfilo = post.author.image
+        immagineProfilo = `<img class="profile-pic" src="${post.author.image}" alt="Phil Mangione">`  
     }
     let user_Name = post.author.name
     let likes = post.likes
-    let data= post.created
-    let descrizione= post.content
-    let media= post.media
+    let data = post.created
+    let descrizione = post.content
+    let media = post.media
     let id = post.id
+    
     containerElement.insertAdjacentHTML('beforeend', generetePost(immagineProfilo, user_Name, likes, data, descrizione, media, id))
 });
 
@@ -84,7 +85,7 @@ function generetePost(icon, name, likes, data, descrizione, media, id) {
     <div class="post__header">
     <div class="post-meta">                    
         <div class="post-meta__icon">
-            <img class="profile-pic" src="${icon}" alt="${icon}">                    
+            ${icon}                 
             </div>
         <div class="post-meta__data">
         <div class="post-meta__author">${name}</div>
@@ -111,7 +112,7 @@ Piace a <b id="${id}" class="js-likes-counter">${likes}</b> persone
 </div>            
 </div>`
     return markup
-} 
+}
 
 function genereteImgProv(nomeUtente) {
     // nomeUtente = "Luca Formicola"
@@ -122,14 +123,14 @@ function genereteImgProv(nomeUtente) {
     // userName='Luca'
     let lastName = nome[1]
     // prendere la prima lettera della scriga sia di username che llast name e salvarla in un variabile ciascuno
-   /*  console.log(userName);
-    console.log(lastName); */
+    /*  console.log(userName);
+     console.log(lastName); */
     const fistChartName = userName.charAt(0);
     console.log(fistChartName);
     const lastChartName = lastName.charAt(0);
     console.log(lastChartName);
 
-    let fistCaracter = `${fistChartName} ${lastChartName}`
+    let fistCaracter = `<div class="profile-pic">${fistChartName} ${lastChartName}</div>`
     console.log(fistCaracter);
     return fistCaracter
 
